@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Spin Wheel</title>
+  <link rel="stylesheet" href="css/styleSheet.css">
+  <script src="lib/jquery.min.js"></script>
+  <script src="src/jquery.spin-wheel.js"></script>
+  <script src="src/jquery.spin-wheel-skins.js"></script>
+</head>
+
+<body style="background-color: black">
+  <div id="all">
+  <div id="spinwheel"></div>
+  <button type="button" id="spin">Quay</button>
+  </div>
+  <script>
+    $(function () {
+      
+      SpinWheelSkins['myskin'] = $.extend({}, SpinWheelSkins.default);
+      //SpinWheelSkins['myskin'].innerCircle[0]['shadow'].type = 'outer';
+      SpinWheelSkins['myskin'].innerCircle[1]['color'] = null;
+      SpinWheelSkins['myskin'].innerCircle[1]['image'] = 'logo.png';
+      
+      $("#spinwheel").spinWheel({
+        slices: [
+          { label: '1 Ly', chance: 0.12, prize: false },
+          { label: 'Bên Trái Uống', chance: 0.12, prize: true },
+          { label: '1/2 Ly', chance: 0.12, prize: true, style: { text: { color: '#ffffff', font: 'sans-serif', font_size: 10, shadow: { blur: 6, color: '#d011dd' }, stroke: { width: 1, color: '#d011dd' } } } },
+          { label: 'Bên Phải Uống', chance: 0.12, prize: true },
+          { label: 'Mọi Người Uống (Trừ người quay)', chance: 0.12, prize: true },
+		  { label: 'Ly Rưỡi', chance: 0.12, prize: true },
+		  { label: '3 Miếng Mồi', chance: 0.12, prize: true },
+		  { label: '2 Ly', chance: 0.12, prize: true },
+		  { label: 'Qua Lượt', chance: 0.12, prize: true },
+		  { label: '1 Ly + Quay Lại', chance: 0.12, prize: true },
+		  { label: 'Giống Người Tiếp Theo', chance: 0.12, prize: true },
+		  { label: 'Bỏ 2 Vòng', chance: 0.12, prize: true },
+		  
+        ],
+        skin: 'myskin',
+        radius: 300,
+        tick_sound: 'tick.mp3',
+        duration:3000,
+        speed:2,
+        onStop: function (idx, slice) {
+          console.log('winner is ', idx, slice);
+        }
+      });
+
+      $("#spin").click(function () {
+        $("#spinwheel").spinWheel().spin();
+      })
+    });
+  </script>
+</body>
+
+</html>
