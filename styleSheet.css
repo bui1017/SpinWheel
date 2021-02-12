@@ -11,4 +11,9 @@
   display: inline-block;
   margin: 4px 2px;
   cursor: pointer;
+  font-size: 25px;
+}
+h1{
+  color: white;
+  font-size: 50px;
 }
